@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "../card/Card";
+import Navigation from "../navigation/Navigation";
 
 function Fetch() {
   const [fetchedRecords, setFetchedRecords] = useState(null);
@@ -40,36 +41,13 @@ function Fetch() {
 
   return (
     <div className="Fetch">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={query}
-          placeholder="Nazev Filmu"
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button className="searchButton" type="submit">
-          Hledat
-        </button>
-
-        <label>
-        <input
-          type="radio"
-          value="cs"
-          checked={language === "cs"}
-          onChange={handleLanguageChange}
-        />
-        Czech
-      </label>
-      <label>
-        <input
-          type="radio"
-          value="en"
-          checked={language === "en"}
-          onChange={handleLanguageChange}
-        />
-        English
-      </label>
-      </form>
+      <Navigation 
+        language={language}
+        handleLanguageChange={handleLanguageChange}
+        query={query}
+        setQuery={setQuery}
+        handleSubmit={handleSubmit}
+      />
       <div className="container">
         {fetchedRecords ? (
           <>

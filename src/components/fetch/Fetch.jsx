@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../card/Card";
 import Navigation from "../navigation/Navigation";
 import "./fetch.scss";
+import Pagination from "../pagination/Pagination";
 
 function Fetch() {
   const [fetchedRecords, setFetchedRecords] = useState(null);
@@ -23,7 +24,7 @@ function Fetch() {
 
   useEffect(() => {
     handleSearch();
-  }, [language])
+  }, [language, page])
 
   function handleSearch() {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=d426620aab63f7f3dfe843871d10aa30&language=${language}&query=${getQueryString(query)}&page=${page}`;
@@ -32,6 +33,7 @@ function Fetch() {
       .then((response) => response.json())
       .then((data) => {
         setFetchedRecords(data);
+        setTotalPages(data.total_pages);
       })
       .catch((error) => console.error(error));
 
@@ -40,17 +42,24 @@ function Fetch() {
   }
 
   function handleSubmit(e) {
+    setPage(1);
     e.preventDefault();
     handleSearch();
   }
 
-  useEffect(() => {
-    fetchedRecords ? setTotalPages(fetchedRecords.total_pages)
-    : console.log("zatím žádné stránky");
-  }, [fetchedRecords]);
+  function handleNextPage(e) {
+    e.preventDefault();
+    page < totalPages
+    ? (setPage((prevPage) => prevPage + 1), handleSearch())
+    : (console.log("Už jsi na konci lol"));
+  }
 
-  // console.log(totalPages);
-
+  function handlePreviousPage(e) {
+    e.preventDefault();
+    page > 1
+    ? (setPage((prevPage) => prevPage - 1), handleSearch())
+    : (console.log("Jsi na začátku lol"));
+  }
 
   return (
     <div className="Fetch">
@@ -65,14 +74,27 @@ function Fetch() {
         {searched ? (
           <>
             <h2>You searched: "{searched}"</h2>
+            <Pagination 
+              currentPage={page} 
+              totalPages={totalPages}
+              handlePreviousPage={handlePreviousPage}
+              handleNextPage={handleNextPage} 
+              
+            />
             <ul>
               {fetchedRecords.results.map((record) => (
                 <Card record={record} key={record.id} language={language}/>
               ))}
             </ul>
+            <Pagination 
+              currentPage={page} 
+              totalPages={totalPages} 
+              handlePreviousPage={handlePreviousPage}
+              handleNextPage={handleNextPage} 
+            />
           </>
         ) : (
-          <p>bruh</p>
+          <p>Home bruh</p>
         )}
       </div>
     </div>

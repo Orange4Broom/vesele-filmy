@@ -1,5 +1,4 @@
 function Navigation({language, handleLanguageChange, query, setQuery, handleSubmit}) {
-
   return (
     <div className="Navigation">
       <form onSubmit={handleSubmit}>

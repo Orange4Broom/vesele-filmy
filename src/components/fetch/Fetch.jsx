@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "../card/Card";
 import Navigation from "../navigation/Navigation";
+import "./fetch.scss";
 
 function Fetch() {
   const [fetchedRecords, setFetchedRecords] = useState(null);

@@ -1,0 +1,39 @@
+.popularity, .rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 20px;
+
+  height: 40px;
+  width: 50%;
+}
+
+.stats {
+  display: flex;
+  flex-direction: row;
+
+  margin-bottom: 50px;
+}
+
+.popularity h4 {
+  display: flex;
+  flex-direction: row;
+
+  gap: 10px;
+}
+
+.rating h4 {
+  display: flex;
+  flex-direction: row;
+
+  gap: 10px;
+}
+
+.header {
+  margin: 10px 0;
+}
+
+.overview {
+  max-width: 460px;
+}

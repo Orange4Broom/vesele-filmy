@@ -6,7 +6,7 @@ function Fetch() {
   const [fetchedRecords, setFetchedRecords] = useState(null);
   const [language, setLanguage] = useState("cs");
   const [query, setQuery] = useState("");
-  const [searched, setSearched] = useState("");
+  const [searched, setSearched] = useState(null);
 
   const getQueryString = (query) => {
     const regex = /\s+/g;
@@ -31,6 +31,7 @@ function Fetch() {
       .catch((error) => console.error(error));
 
     setSearched(query);
+    console.log(fetchedRecords);
     console.log(getQueryString(query));
   }
 
@@ -49,12 +50,12 @@ function Fetch() {
         handleSubmit={handleSubmit}
       />
       <div className="container">
-        {fetchedRecords ? (
+        {searched ? (
           <>
             <h2>You searched: "{searched}"</h2>
             <ul>
               {fetchedRecords.results.map((record, id) => (
-                <Card record={record} key={record.id}/>
+                <Card record={record} key={record.id} language={language}/>
               ))}
             </ul>
           </>

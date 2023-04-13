@@ -14,6 +14,7 @@ function Card({record, language}) {
   return (
     <div className="box">
       <img
+        className="poster-img"
         src={`https://www.themoviedb.org/t/p/w500_and_h282_face${record.backdrop_path}`}
         alt="Poster"
       />

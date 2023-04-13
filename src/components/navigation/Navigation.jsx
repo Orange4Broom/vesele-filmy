@@ -13,24 +13,27 @@ function Navigation({language, handleLanguageChange, query, setQuery, handleSubm
             Hledat
           </button>
 
+          <div className="languages">
+            <label>
+            <input
+              type="radio"
+              value="cs"
+              checked={language === "cs"}
+              onChange={handleLanguageChange}
+            />
+            Czech
+          </label>
           <label>
-          <input
-            type="radio"
-            value="cs"
-            checked={language === "cs"}
-            onChange={handleLanguageChange}
-          />
-          Czech
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="en"
-            checked={language === "en"}
-            onChange={handleLanguageChange}
-          />
-          English
-        </label>
+            <input
+              type="radio"
+              value="en"
+              checked={language === "en"}
+              onChange={handleLanguageChange}
+            />
+            English
+          </label>
+        </div>
+
       </form>
       </div>
   )

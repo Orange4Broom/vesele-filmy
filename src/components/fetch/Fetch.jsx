@@ -7,6 +7,8 @@ function Fetch() {
   const [language, setLanguage] = useState("cs");
   const [query, setQuery] = useState("");
   const [searched, setSearched] = useState(null);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   const getQueryString = (query) => {
     const regex = /\s+/g;
@@ -23,15 +25,16 @@ function Fetch() {
   }, [language])
 
   function handleSearch() {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=d426620aab63f7f3dfe843871d10aa30&language=${language}&query=${getQueryString(query)}`;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=d426620aab63f7f3dfe843871d10aa30&language=${language}&query=${getQueryString(query)}&page=${page}`;
 
     fetch(url)
       .then((response) => response.json())
-      .then((data) => setFetchedRecords(data))
+      .then((data) => {
+        setFetchedRecords(data);
+      })
       .catch((error) => console.error(error));
 
     setSearched(query);
-    console.log(fetchedRecords);
     console.log(getQueryString(query));
   }
 
@@ -39,6 +42,14 @@ function Fetch() {
     e.preventDefault();
     handleSearch();
   }
+
+  useEffect(() => {
+    fetchedRecords ? setTotalPages(fetchedRecords.total_pages)
+    : console.log("zatím žádné stránky");
+  }, [fetchedRecords]);
+
+  // console.log(totalPages);
+
 
   return (
     <div className="Fetch">
@@ -54,7 +65,7 @@ function Fetch() {
           <>
             <h2>You searched: "{searched}"</h2>
             <ul>
-              {fetchedRecords.results.map((record, id) => (
+              {fetchedRecords.results.map((record) => (
                 <Card record={record} key={record.id} language={language}/>
               ))}
             </ul>

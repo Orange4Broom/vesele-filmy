@@ -9,9 +9,18 @@
   width: 50%;
 }
 
+.poster-img {
+  max-width: 500px;
+  width: 100%;
+}
+
 .stats {
   display: flex;
   flex-direction: row;
+
+  gap: 80px;
+
+  max-width: 500px;
 
   margin-bottom: 50px;
 }
@@ -36,4 +45,11 @@
 
 .overview {
   max-width: 460px;
+}
+
+@media (max-width: 500px) {
+  .stats {
+    flex-direction: column;
+    gap: 0px;
+  }
 }

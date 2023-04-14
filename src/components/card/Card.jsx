@@ -28,7 +28,7 @@ function Card({record, language}) {
           </div>
           <div className="rating">
             <h3 className="label">Rating</h3>
-            <h4><Icon name='star-half-stroke' type='fas' color='#ECCE07' /> {rating.toFixed(1)}/10</h4>
+            <h4><Icon name='star' type='fas' color='#ECCE07' /> {(rating.toFixed(1)/2)}/5</h4>
           </div>
         </div>
       </div>

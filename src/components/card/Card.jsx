@@ -1,7 +1,7 @@
 import Icon from "../icon/Icon";
 import "./card.scss";
 
-function Card({record, language}) {
+function Card({record}) {
   const rating = record.vote_average;
   const popularity = record.popularity;
   let overview = record.overview;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Card from "../card/Card";
-import Navigation from "../navigation/Navigation";
+import Card from "../../components/card/Card";
+import Navigation from "../../components/navigation/Navigation";
 import "./fetch.scss";
-import Pagination from "../pagination/Pagination";
+import Pagination from "../../components/pagination/Pagination";
 
 function Fetch() {
   const [fetchedRecords, setFetchedRecords] = useState(null);
@@ -83,7 +83,7 @@ function Fetch() {
             />
             <ul>
               {fetchedRecords.results.map((record) => (
-                <Card record={record} key={record.id} language={language}/>
+                <Card record={record} key={record.id}/>
               ))}
             </ul>
             <Pagination 

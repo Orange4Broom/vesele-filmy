@@ -1,4 +1,4 @@
-import Fetch from "./components/fetch/Fetch";
+import Fetch from "./functions/fetch/Fetch";
 
 function App() {
 

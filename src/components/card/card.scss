@@ -48,6 +48,17 @@
   width: 100%;
 }
 
+.bookmark-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgb(24, 172, 56);
+}
+
+.active {
+  color: pink;
+}
+
 @media (max-width: 500px) {
   .stats {
     flex-direction: column;

@@ -1,10 +1,15 @@
-import Fetch from "./functions/fetch/Fetch";
+import FetchFilms from "./functions/fetchFilms/FetchFilms";
+import { Route, Routes } from 'react-router-dom';
+import Watchlist from "./functions/watchlist/Watchlist";
 
 function App() {
 
   return (
     <div className="App">
-      <Fetch />
+      <Routes>
+        <Route path="/" element={<FetchFilms />} />
+        <Route path="/watchlist" element={<Watchlist />} />
+      </Routes>
     </div>
   )
 }

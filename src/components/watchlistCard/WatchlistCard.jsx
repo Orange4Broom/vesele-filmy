@@ -1,30 +1,29 @@
 import Icon from "../icon/Icon";
-import "./card.scss";
 
-function Card({record, onSave }) {
-  const rating = record.vote_average;
-  const popularity = record.popularity;
-  let overview = record.overview;
+function WatchlistCard({records, onRemove }) {
+  const rating = records.vote_average;
+  const popularity = records.popularity;
+  let overview = records.overview;
   const MAX_CHARACTERS = 120;
 
   const truncaText = overview.length > MAX_CHARACTERS
   ? overview.substring(0, MAX_CHARACTERS) + '...'
   : overview;
 
-  const handleSaveId = () => {
-    onSave(record.id);
+  const handleRemoveId = () => {
+    onRemove(records.id);
   };
 
   return (
     <div className="box">
       <img
         className="poster-img"
-        src={`https://www.themoviedb.org/t/p/w500_and_h282_face${record.backdrop_path}`}
+        src={`https://www.themoviedb.org/t/p/w500_and_h282_face${records.backdrop_path}`}
         alt="Poster"
       />
       <div className="card">
-        <h2 className="header">{record.title}</h2>
-        <p>id: {record.id}</p>
+        <h2 className="header">{records.title}</h2>
+        <p>id: {records.id}</p>
         <p className="overview">{truncaText} </p>
         <div className="stats">
           <div className="popularity">
@@ -36,7 +35,7 @@ function Card({record, onSave }) {
             <h4><Icon name='star' type='fas' color='#ECCE07' /> {(rating.toFixed(1)/2)}/5</h4>
           </div>
           <div className="save">
-            <button onClick={handleSaveId}><Icon name="bookmark" type="fas" color="" /></button>
+            <button onClick={handleRemoveId}><Icon name="bookmark" type="fas" color="" /></button>
           </div>
         </div>
       </div>
@@ -44,4 +43,4 @@ function Card({record, onSave }) {
   )
 }
 
-export default Card;
+export default WatchlistCard;

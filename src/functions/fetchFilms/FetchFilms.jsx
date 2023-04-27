@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Card from "../../components/card/Card";
 import Navigation from "../../components/navigation/Navigation";
-import "./fetch.scss";
+import "./fetchFilms.scss";
 import Pagination from "../../components/pagination/Pagination";
+import { Link } from "react-router-dom";
+import Icon from '../../components/icon/Icon';
 
-function Fetch() {
+
+function FetchFilms() {
   const [fetchedRecords, setFetchedRecords] = useState(null);
   const [language, setLanguage] = useState("cs");
   const [query, setQuery] = useState("");
@@ -30,7 +33,7 @@ function Fetch() {
 
   function handleSearch() {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=d426620aab63f7f3dfe843871d10aa30&language=${language}&query=${getQueryString(query)}&page=${page}`;
-
+                //? API for search id https://api.themoviedb.org/3/movie/{movie_id}?api_key=d426620aab63f7f3dfe843871d10aa30
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -65,12 +68,25 @@ function Fetch() {
 
 
   const handleSaveId = (id) => {
-    setSavedIds((prevArrayIds) => [...prevArrayIds, id]);
+    savedIds.includes(id)
+      ?  setSavedIds((prevArrayIds) => prevArrayIds.filter((arrayId) => arrayId !== id))
+      :  setSavedIds((preArrayIds) => [...preArrayIds, id]);
   };
 
   useEffect(() => {
-    console.log('Array:', savedIds);
-  }, [handleSaveId])
+    const idsFromLocalStorage = JSON.parse(localStorage.getItem("Ids"));
+    if (idsFromLocalStorage) {
+      setSavedIds(idsFromLocalStorage);
+    }
+  }, []);
+
+  useEffect(() => {
+    savedIds.length > 0 
+      ? localStorage.setItem("Ids", JSON.stringify(savedIds))
+      : localStorage.removeItem("Ids");
+  }, [savedIds])
+  
+  
 
   return (
     <div className="Fetch">
@@ -82,6 +98,7 @@ function Fetch() {
         handleSubmit={handleSubmit}
       />
       <div className="container">
+      <Link to="/watchlist">Watchlist</Link>
         {searched ? (
           <>
             <h2>You searched: "{searched}"</h2>
@@ -94,7 +111,7 @@ function Fetch() {
             />
             <ul>
               {fetchedRecords.results.map((record) => (
-                <Card record={record} key={record.id} onSaveId={handleSaveId}/>
+                <Card record={record} key={record.id} onSave={handleSaveId}/>
               ))}
             </ul>
             <Pagination 
@@ -105,11 +122,11 @@ function Fetch() {
             />
           </>
         ) : (
-          <p>Home bruh</p>
+          <h2>home bruh</h2>
         )}
       </div>
     </div>
   );
 }
 
-export default Fetch;
+export default FetchFilms;

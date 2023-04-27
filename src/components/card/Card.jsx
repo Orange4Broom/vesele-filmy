@@ -1,7 +1,8 @@
+import { useState } from "react";
 import Icon from "../icon/Icon";
 import "./card.scss";
 
-function Card({record}) {
+function Card({record, onSaveId}) {
   const rating = record.vote_average;
   const popularity = record.popularity;
   let overview = record.overview;
@@ -10,6 +11,10 @@ function Card({record}) {
   const truncaText = overview.length > MAX_CHARACTERS
   ? overview.substring(0, MAX_CHARACTERS) + '...'
   : overview;
+
+  const handleSaveId = () => {
+    onSaveId(record.id);
+  };
 
   return (
     <div className="box">
@@ -20,6 +25,7 @@ function Card({record}) {
       />
       <div className="card">
         <h2 className="header">{record.title}</h2>
+        <p>id: {record.id}</p>
         <p className="overview">{truncaText} </p>
         <div className="stats">
           <div className="popularity">
@@ -29,6 +35,9 @@ function Card({record}) {
           <div className="rating">
             <h3 className="label">Rating</h3>
             <h4><Icon name='star' type='fas' color='#ECCE07' /> {(rating.toFixed(1)/2)}/5</h4>
+          </div>
+          <div className="save">
+            <button onClick={handleSaveId}><Icon name="bookmark" type="fas" color="" /></button>
           </div>
         </div>
       </div>

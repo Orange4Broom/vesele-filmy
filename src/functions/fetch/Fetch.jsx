@@ -12,6 +12,8 @@ function Fetch() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
+  const [savedIds, setSavedIds] = useState([]);
+
   const getQueryString = (query) => {
     const regex = /\s+/g;
     const queryString = query.trim().replaceAll(regex, "+");
@@ -61,6 +63,15 @@ function Fetch() {
     : (console.log("Jsi na začátku lol"));
   }
 
+
+  const handleSaveId = (id) => {
+    setSavedIds((prevArrayIds) => [...prevArrayIds, id]);
+  };
+
+  useEffect(() => {
+    console.log('Array:', savedIds);
+  }, [handleSaveId])
+
   return (
     <div className="Fetch">
       <Navigation 
@@ -83,7 +94,7 @@ function Fetch() {
             />
             <ul>
               {fetchedRecords.results.map((record) => (
-                <Card record={record} key={record.id}/>
+                <Card record={record} key={record.id} onSaveId={handleSaveId}/>
               ))}
             </ul>
             <Pagination 

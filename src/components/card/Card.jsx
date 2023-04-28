@@ -1,5 +1,4 @@
 import Icon from "../icon/Icon";
-import { useState } from "react";
 import "./card.scss";
 
 function Card({record, onSave, saved }) {

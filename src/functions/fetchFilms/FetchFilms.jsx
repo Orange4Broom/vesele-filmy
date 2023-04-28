@@ -4,8 +4,6 @@ import Navigation from "../../components/navigation/Navigation";
 import "./fetchFilms.scss";
 import Pagination from "../../components/pagination/Pagination";
 import { Link } from "react-router-dom";
-import Icon from '../../components/icon/Icon';
-
 
 function FetchFilms() {
   const [fetchedRecords, setFetchedRecords] = useState(null);
@@ -33,7 +31,6 @@ function FetchFilms() {
 
   function handleSearch() {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=d426620aab63f7f3dfe843871d10aa30&language=${language}&query=${getQueryString(query)}&page=${page}`;
-                //? API for search id https://api.themoviedb.org/3/movie/{movie_id}?api_key=d426620aab63f7f3dfe843871d10aa30
     fetch(url)
       .then((response) => response.json())
       .then((data) => {

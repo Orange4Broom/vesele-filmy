@@ -1,3 +1,20 @@
-.container ul {
+.container .continer {
   padding: 0;
+}
+
+.container-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 0.8fr));
+  grid-gap: 20px;
+  justify-content: center;
+  flex-direction: column;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+}
+
+.item {
+  height: 343px;
 }

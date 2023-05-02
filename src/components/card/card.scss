@@ -10,17 +10,17 @@
 }
 
 .poster-img {
-  max-width: 500px;
   width: 100%;
+  height: 310px;
 }
 
 .stats {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
-  gap: 80px;
-
-  max-width: 200px;
+  gap: 5px;
 
   margin-bottom: 50px;
 }
@@ -29,23 +29,18 @@
   display: flex;
   flex-direction: row;
 
-  gap: 10px;
+  gap: 5px;
 }
 
 .rating h4 {
   display: flex;
   flex-direction: row;
 
-  gap: 10px;
+  gap: 5px;
 }
 
 .header {
   margin: 10px 0;
-}
-
-.overview {
-  max-width: 470px;
-  width: 100%;
 }
 
 .bookmark-button {
@@ -53,6 +48,7 @@
   border: none;
   cursor: pointer;
   color: rgb(24, 172, 56);
+  font-size: 20px;
 }
 
 .active {
@@ -61,7 +57,7 @@
 
 @media (max-width: 500px) {
   .stats {
-    flex-direction: column;
+    flex-direction: row;
     gap: 0px;
   }
 }

@@ -106,11 +106,11 @@ function FetchFilms() {
               handleNextPage={handleNextPage} 
               
             />
-            <ul>
+            <div className="container-grid">
               {fetchedRecords.results.map((record) => (
-                <Card record={record} key={record.id} onSave={handleSaveId} saved={savedIds}/>
+                <Card className="item" record={record} key={record.id} onSave={handleSaveId} saved={savedIds}/>
               ))}
-            </ul>
+            </div>
             <Pagination 
               currentPage={page} 
               totalPages={totalPages} 

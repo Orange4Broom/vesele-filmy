@@ -10,9 +10,9 @@ library.add(fab);
 
 const Icon = ({ name, type, color }) => {
   return (
-    <div className="icon">
+    <span className="icon">
       <FontAwesomeIcon icon={[type, name]} style={{ color: color }} />
-    </div>
+    </span>
   );
 };
 

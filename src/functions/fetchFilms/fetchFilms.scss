@@ -5,7 +5,7 @@
 .container-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 0.8fr));
-  grid-gap: 20px;
+  grid-gap: 40px 20px;
   justify-content: center;
   flex-direction: column;
 
@@ -17,4 +17,5 @@
 
 .item {
   height: 343px;
+  margin-bottom: 10px;
 }

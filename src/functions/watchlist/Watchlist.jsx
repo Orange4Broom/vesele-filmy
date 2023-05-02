@@ -42,13 +42,13 @@ function Watchlist() {
   };
 
   return (
-    <div>
+    <div className="container">
       <Link to="/">Home</Link>
-      <ul>
+      <div className="container-grid">
         {watchlistFilms.map((record) => (
           <WatchlistCard records={record} key={record.id} onRemove={handleRemoveId} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

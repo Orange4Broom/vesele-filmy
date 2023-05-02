@@ -108,7 +108,9 @@ function FetchFilms() {
             />
             <div className="container-grid">
               {fetchedRecords.results.map((record) => (
-                <Card className="item" record={record} key={record.id} onSave={handleSaveId} saved={savedIds}/>
+                <div className="item" key={record.id}>
+                  <Card record={record} onSave={handleSaveId} saved={savedIds}/>
+                </div>
               ))}
             </div>
             <Pagination 

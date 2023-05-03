@@ -6,3 +6,13 @@
 .card {
   align-items: center;
 }
+
+.poster-img {
+  max-width: 580px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
